@@ -6,13 +6,16 @@ Solution #1: Two Pointers
 - Time: O(n)
 - Space: O(1)
 
-Use two pointers, one at the start and one at the end of the array.
+Use two pointers starting at opposite ends of the array to find the maximum water container area.
 
-At each step, calculate the area formed by the lines at the two pointers and the distance between them.
+Algorithm:
+1. Initialize left pointer at start (0) and right pointer at end (n-1) for maximum width
+2. Calculate area: width x min(height[left], height[right])
+3. Move the pointer at the shorter line inward, as keeping it would only yield smaller areas
+4. Repeat until pointers meet
 
-Update the maximum area found so far. Move the pointer pointing to the shorter line inward, as this will potentially increase the area in the next step.
-
-This approach ensures that we explore all possible pairs of lines while maintaining an efficient time complexity.
+Key insight: Moving the shorter line pointer eliminates all suboptimal containers that use
+that line with smaller widths, ensuring we find the optimal solution without checking all O(n²) pairs.
 """
 
 
