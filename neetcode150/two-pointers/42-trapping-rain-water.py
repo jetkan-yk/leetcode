@@ -7,7 +7,9 @@ Solution #1: Dynamic Programming
 - Space: O(n)
 
 The dynamic programming approach pre-computes the maximum height to the left and right of each position.
+
 For each position, the water level is determined by the minimum of the maximum heights on both sides.
+
 The amount of water trapped at each position is the difference between this water level and the height at that position.
 """
 
