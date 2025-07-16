@@ -1,0 +1,19 @@
+[project]
+name = "leetcode"
+version = "0.1.0"
+authors = [{ name = "Jet Kan", email = "jetkan.yk@gmail.com" }]
+requires-python = ">=3.11"
+dependencies = ["ipykernel>=6.29.5", "mypy>=1.17.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+ignore = ["E741"] # E741: Ambiguous variable names
+
+[tool.mypy]
+mypy_path = "src"
