@@ -1,10 +1,11 @@
 """
 Problem: https://leetcode.cn/problems/container-with-most-water/
-Tags: Greedy, Array, Two Pointers
 Difficulty: Medium
-Time: O(n)
-Space: O(1)
-Solution:
+
+Solution #1: Two Pointers
+- Time: O(n)
+- Space: O(1)
+
 Use two pointers, one at the start and one at the end of the array.
 
 At each step, calculate the area formed by the lines at the two pointers and the distance between them.
