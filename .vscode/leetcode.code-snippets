@@ -31,7 +31,7 @@
 			"\teval = Evaluator(Solution().$3)",
 			"\teval.add_case($5, expected=$6)",
 			"\teval.add_case($7, expected=$8)",
-			"\teval.run()\n\n"
+			"\teval.run()\n"
 		],
 		"description": "LeetCode template for Python solutions"
 	}
