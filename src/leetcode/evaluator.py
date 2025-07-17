@@ -42,14 +42,11 @@ class Evaluator:
         """
         Run the evaluation using all registered test cases.
         """
-        show_ac = True
         for args, kwargs, expected in self.cases:
-            print(f"Evaluating: {prettify(self.fn, args, kwargs)})")
+            print(f"Evaluating: {prettify(self.fn, args, kwargs)}")
             output = self.fn(*args, **kwargs)
 
-            if self.verify is False or not self.verify(output, expected):
+            if self.verify and self.verify(output, expected):
+                print("Correct!\n")
+            else:
                 print(f"Output: {output}\nExpected: {expected}\n")
-                show_ac = False
-
-        if show_ac:
-            print("All correct!\n")
