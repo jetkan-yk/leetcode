@@ -2,17 +2,30 @@
 Problem: https://leetcode.cn/problems/coin-change/
 Difficulty: Medium
 
-Solution #1: Top Down with Memoization
-- Time: O(amount x len(coins))
+Solution #1: Top Down
+- Time: O(num_coins ^ amount)
 - Space: O(amount)
 
-Uses top down recursion with memoization: min(count(amount - coin) + 1 for each coin)
+The subproblem branching factor is the number of coins, and the depth is the amount.
+
+Solution #2: Top Down with Memoization
+- Time: O(amount x num_coins)
+- Space: O(amount)
+
+Each subproblem is solved only once with memoization. There are O(amount) unique subproblems, and for each subproblem we iterate through all coins.
+
+Solution #3: Bottom Up with Memoization
+- Time: O(amount x num_coins)
+- Space: O(amount)
+
+The memo[i] represents the minimum number of coins needed to make amount i.
 """
 
 
 class Solution:
     def coinChange(self, coins: list[int], amount: int) -> int:
-        return self.top_down_with_memo(coins, amount, [None] * (amount + 1))
+        # return self.top_down_with_memo(coins, amount, [None] * (amount + 1))
+        return self.bottom_up_with_memo(coins, amount)
 
     def top_down(self, coins: list[int], amount: int) -> int:
         if amount < 0:
@@ -24,7 +37,7 @@ class Solution:
         for coin in coins:
             count = self.top_down(coins, amount - coin) + 1
             if count == 0:
-                continue  # Skip if no solution for this coin
+                continue
             if min_count == -1 or count < min_count:
                 min_count = count
         return min_count
@@ -41,11 +54,23 @@ class Solution:
         for coin in coins:
             count = self.top_down_with_memo(coins, amount - coin, memo) + 1
             if count == 0:
-                continue  # Skip if no solution for this coin
+                continue
             if min_count == -1 or count < min_count:
                 min_count = count
 
         memo[amount] = min_count
+        return memo[amount]
+
+    def bottom_up_with_memo(self, coins: list[int], amount: int) -> int:
+        memo = [-1] * (amount + 1)
+        memo[0] = 0
+        for i in range(1, amount + 1):
+            for coin in coins:
+                if i - coin < 0 or memo[i - coin] == -1:
+                    continue
+                count = memo[i - coin] + 1
+                if memo[i] == -1 or count < memo[i]:
+                    memo[i] = count
         return memo[amount]
 
 
