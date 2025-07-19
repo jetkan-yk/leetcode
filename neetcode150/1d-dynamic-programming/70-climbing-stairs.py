@@ -8,7 +8,7 @@ Solution #1: Dynamic Programming (array)
 
 Iteratively calculate the number of ways to reach each step x using f(x) = f(x-1) + f(x-2).
 
-Solution #2: Dynamic Programming (variables)
+Solution #2: Dynamic Programming (variable)
 - Time: O(n)
 - Space: O(1)
 
@@ -19,7 +19,7 @@ At each step, only the last two computed values are needed, so we can use two va
 class Solution:
     def climbStairs(self, n: int) -> int:
         # return self.array(n)
-        return self.variables(n)
+        return self.variable(n)
 
     def array(self, n: int) -> int:
         if n < 3:
@@ -31,7 +31,7 @@ class Solution:
             dp[i] = dp[i - 1] + dp[i - 2]
         return dp[-1]
 
-    def variables(self, n: int) -> int:
+    def variable(self, n: int) -> int:
         if n < 3:
             return n
 
